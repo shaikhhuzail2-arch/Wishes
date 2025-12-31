@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy New Year Roshuuu</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000; /* Black background makes colors pop */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #card {
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ff85a2;
+            z-index: 10;
+            transition: all 1s ease;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #ff85a2;
+            text-shadow: 0 0 10px #ff85a2;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background: #ff85a2;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ff85a2;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background: #f06292;
+        }
+
+        #message {
+            display: none; /* Hidden at first */
+            font-size: 1.4rem;
+            line-height: 1.8;
+            animation: slideUp 1s ease;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #ff85a2;
+            font-weight: bold;
+        }
+
+        /* Party Animation Elements */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            z-index: 1;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="card">
+        <h1>Happy New Year Roshuuu 🎀🎀</h1>
+        <button class="btn" id="celebrateBtn" onclick="startCelebration()">Celebrate 🎉</button>
+
+        <div id="message">
+            <h2 style="color: #ffd32a;">✨ Happy New Year! ✨</h2>
+            <p>Sending heartfelt wishes for an amazing New Year full of blessings.</p>
+            <p>Life changes, but my New Year wishes for you remains:<br><b>health, happiness, and love.</b></p>
+            <div class="signature">By Huzu😁</div>
+        </div>
+    </div>
+
+    <script>
+        function startCelebration() {
+            // 1. Swap the UI
+            document.getElementById('celebrateBtn').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            document.body.style.background = "#1a0005"; // Change background to deep pink-black
+
+            // 2. Trigger "very good animation" (Glow effect)
+            document.getElementById('card').style.boxShadow = "0 0 80px #ff85a2";
+            document.getElementById('card').style.transform = "scale(1.05)";
+
+            // 3. Create lots of confetti/firework particles
+            for (let i = 0; i < 150; i++) {
+                createParticle();
+            }
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'confetti';
+            
+            // Random shapes (mix of squares and circles)
+            if (Math.random() > 0.5) particle.style.borderRadius = "50%";
+            
+            // Random colors
+            const colors = ['#ff85a2', '#ffd32a', '#ff4757', '#ffffff', '#2ecc71'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random position
+            particle.style.left = Math.random() * 100 + "vw";
+            particle.style.top = "-20px";
+            
+            // Random size
+            const size = Math.random() * 12 + 5 + "px";
+            particle.style.width = size;
+            particle.style.height = size;
+
+            // Random animation
+            const duration = Math.random() * 3 + 2;
+            particle.style.animation = `fall ${duration}s linear forwards`;
+            
+            document.body.appendChild(particle);
+
+            // Remove from memory after animation finishes
+            setTimeout(() => { particle.remove(); }, duration * 1000);
+        }
+    </script>
+</body>
+</html>
